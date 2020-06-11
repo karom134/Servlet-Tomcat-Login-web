@@ -48,12 +48,19 @@ public class DatabaseConnector {
         con.close();
         return password;
     }
-    public static void main(String args[]) {
-        DatabaseConnector databaseConnector=new DatabaseConnector();
-        try {
-            System.out.println(databaseConnector.getPassword("karomV"));
-        } catch (SQLException | ClassNotFoundException throwables) {
-            throwables.printStackTrace();
-        }
+    public void updateDatabase(String name,String username,String password) throws ClassNotFoundException, SQLException {
+        Class.forName("com.mysql.jdbc.Driver");
+        Connection con= DriverManager.getConnection(
+                "jdbc:mysql://localhost:3306/ooc_hw3","karomV","karom.140598");
+        String query="insert into user(Username, name, password) " +
+                "values (?, ?, ?)";
+        PreparedStatement pstmt = con.prepareStatement(query);
+        pstmt.setString(1, username);
+        pstmt.setString(2, name);
+        pstmt.setString(3, password);
+        pstmt.execute();
+        con.close();
     }
+
+
 }

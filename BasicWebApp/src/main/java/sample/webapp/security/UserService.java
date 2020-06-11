@@ -21,4 +21,14 @@ public class UserService {
     public Boolean checkUser(String username) throws SQLException {
         return databaseConnector.checkUserExist(username);
     }
+
+    public void addUser(String name,String username,String password){
+        try {
+            databaseConnector.updateDatabase(name,username,password);
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+    }
 }

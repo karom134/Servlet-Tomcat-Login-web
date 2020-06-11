@@ -12,6 +12,9 @@
 </head>
 <body>
 <p>
+    ${error}
+</p>
+<p>
 <form method="post">
     <label for="name"><b>Name</b></label>
     <input type="text" placeholder="Enter Name" name="name">
@@ -21,6 +24,9 @@
     <br>
     <label for="password"><b>Password</b></label>
     <input type="password" placeholder="Enter Password" name="password">
+    <br>
+    <label for="password"><b>Reenter Password</b></label>
+    <input type=" reenter password" placeholder="Enter Password" name="reenter_password">
     <br>
     <button type="submit" name="submit">Submit</button>
 
