@@ -29,7 +29,7 @@
     <input type=" reenter password" placeholder="Enter Password" name="reenter_password">
     <br>
     <button type="submit" name="submit">Submit</button>
-
+    <button type="submit" name="back">Back</button>
 </form>
 </p>
 </body>

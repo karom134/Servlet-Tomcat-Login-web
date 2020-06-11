@@ -35,19 +35,7 @@ public class DatabaseConnector {
         con.close();
         return user;
     }
-    public String getPassword(String input) throws SQLException, ClassNotFoundException {
-        Class.forName("com.mysql.jdbc.Driver");
-        Connection con= DriverManager.getConnection(
-                "jdbc:mysql://localhost:3306/ooc_hw3","karomV","karom.140598");
-        String query = "select * from user where Username=?";
-        PreparedStatement pstmt = con.prepareStatement(query);
-        pstmt.setString(1, input);
-        ResultSet rs=pstmt.executeQuery();
-        rs.next();
-        String password=rs.getNString("password");
-        con.close();
-        return password;
-    }
+
     public void updateDatabase(String name,String username,String password) throws ClassNotFoundException, SQLException {
         Class.forName("com.mysql.jdbc.Driver");
         Connection con= DriverManager.getConnection(

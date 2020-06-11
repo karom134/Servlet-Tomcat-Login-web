@@ -18,8 +18,13 @@ public class UserService {
         return databaseConnector.generateUser(username);
     }
 
-    public Boolean checkUser(String username) throws SQLException {
-        return databaseConnector.checkUserExist(username);
+    public Boolean checkUser(String username){
+        try {
+            return databaseConnector.checkUserExist(username);
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+        return false;
     }
 
     public void addUser(String name,String username,String password){
