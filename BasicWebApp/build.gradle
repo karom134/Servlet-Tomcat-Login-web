@@ -23,6 +23,7 @@ dependencies {
     compile group: 'org.apache.tomcat', name: 'tomcat-jasper-el', version: '8.5.2'
     compile group: 'org.apache.tomcat', name: 'tomcat-jsp-api', version: '8.5.2'
     compile group: 'org.apache.commons', name: 'commons-lang3', version: '3.10'
+    compile group: 'mysql', name: 'mysql-connector-java', version: '8.0.20'
 
 }
 jar {
