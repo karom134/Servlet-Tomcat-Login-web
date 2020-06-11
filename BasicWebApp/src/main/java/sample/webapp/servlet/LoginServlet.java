@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
+import java.sql.SQLException;
 
 public class LoginServlet extends AbstractRoutableHttpServlet {
 
@@ -23,13 +24,19 @@ public class LoginServlet extends AbstractRoutableHttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         if(req.getParameter("login")!=null){
-            loginClick(req,resp);
+            try {
+                loginClick(req,resp);
+            } catch (SQLException throwables) {
+                throwables.printStackTrace();
+            } catch (ClassNotFoundException e) {
+                e.printStackTrace();
+            }
         }
         else if(req.getParameter("register")!=null){
             resp.sendRedirect("/register");
         }
     }
-    private void loginClick(HttpServletRequest req,HttpServletResponse resp) throws IOException, ServletException {
+    private void loginClick(HttpServletRequest req,HttpServletResponse resp) throws IOException, ServletException, SQLException, ClassNotFoundException {
         if(securityService.login(req)){
             resp.sendRedirect("/");
         }else{

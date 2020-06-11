@@ -23,16 +23,17 @@ public class ServletRouter {
     }
 
     public void init(Context ctx){
-        UserService userService=new UserService();
+        DatabaseConnector databaseConnector=new DatabaseConnector();
+        UserService userService=new UserService(databaseConnector);
         SecurityService securityService=new SecurityService();
         securityService.setUserService(userService);
-        DatabaseConnector databaseConnector=new DatabaseConnector();
+
 
         for(Class<? extends AbstractRoutableHttpServlet> servletClass:servletClasses){
             try {
                 AbstractRoutableHttpServlet httpServlet=servletClass.newInstance();
                 httpServlet.setSecurityService(securityService);
-                httpServlet.setDatabaseConnector(databaseConnector);
+
                 Tomcat.addServlet(ctx,httpServlet.getClass().getName(),httpServlet);
                 ctx.addServletMapping(httpServlet.getPattern(),httpServlet.getClass().getName());
             } catch (InstantiationException e) {

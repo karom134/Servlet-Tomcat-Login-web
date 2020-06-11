@@ -4,12 +4,21 @@ public class User {
 
     private String username;
     private String password;
+    private String name;
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
 
     public User(){
 
     }
 
-    public User(String username, String password) {
+    public User(String username, String password,String name) {
         this.username = username;
         this.password = password;
     }

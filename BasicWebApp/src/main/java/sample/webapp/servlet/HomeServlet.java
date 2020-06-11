@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
+import java.sql.SQLException;
 import java.util.Date;
 
 public class HomeServlet extends AbstractRoutableHttpServlet {
@@ -18,18 +19,22 @@ public class HomeServlet extends AbstractRoutableHttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-        if (securityService.isAuthorize(req)) {
-            String username = securityService.getCurrentUsername(req);
-            req.setAttribute("username", username);
+        try {
+            if (securityService.isAuthorize(req)) {
+                String username = securityService.getCurrentUsername(req);
+                req.setAttribute("username", username);
 
 
-            Date date = new Date();
-            req.setAttribute("date1", date);//key-value container
-            RequestDispatcher requestDispatcher = req.getRequestDispatcher("WEB-INF/home.jsp");
-            requestDispatcher.include(req, resp);
-        }
-        else{
-            resp.sendRedirect("/login");
+                Date date = new Date();
+                req.setAttribute("date1", date);//key-value container
+                RequestDispatcher requestDispatcher = req.getRequestDispatcher("WEB-INF/home.jsp");
+                requestDispatcher.include(req, resp);
+            }
+            else{
+                resp.sendRedirect("/login");
+            }
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
         }
     }
 
