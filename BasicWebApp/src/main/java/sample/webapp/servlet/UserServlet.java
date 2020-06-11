@@ -39,5 +39,8 @@ public class UserServlet extends AbstractRoutableHttpServlet {
         else if(req.getParameter("remove")!=null){
             System.out.println(req.getParameter("remove"));
         }
+        else if(req.getParameter("add")!=null){
+            resp.sendRedirect("/register");
+        }
     }
 }

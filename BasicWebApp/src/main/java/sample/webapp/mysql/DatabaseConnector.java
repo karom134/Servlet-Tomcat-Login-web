@@ -49,6 +49,15 @@ public class DatabaseConnector {
         pstmt.execute();
         con.close();
     }
-
+    public void removeUser(String username) throws ClassNotFoundException, SQLException {
+        Class.forName("com.mysql.jdbc.Driver");
+        Connection con= DriverManager.getConnection(
+                "jdbc:mysql://localhost:3306/ooc_hw3","karomV","karom.140598");
+        String query="DELETE FROM user WHERE Username=?";
+        PreparedStatement pstmt = con.prepareStatement(query);
+        pstmt.setString(1, username);
+        pstmt.executeQuery();
+        con.close();
+    }
 
 }

@@ -25,9 +25,6 @@ ${error}
         <br>
         <button type="submit" name="login">Login</button>
 </form>
-<form method="post">
-        <button type="submit" name="register">Register</button>
-</form>
 </p>
 </body>
 </html>

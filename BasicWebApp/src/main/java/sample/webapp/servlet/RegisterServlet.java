@@ -8,6 +8,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.sql.SQLException;
 
 public class RegisterServlet extends AbstractRoutableHttpServlet {
 
@@ -22,9 +23,8 @@ public class RegisterServlet extends AbstractRoutableHttpServlet {
         if(req.getParameter("submit")!=null){
             submitClick(req,resp);
         }
-        else if(req.getParameter("back")!=null){
-            System.out.println(req.getParameter("back"));
-            resp.sendRedirect("/login");
+        else if(req.getParameter("back")!=null) {
+            resp.sendRedirect("/user");
         }
     }
     private void submitClick(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {

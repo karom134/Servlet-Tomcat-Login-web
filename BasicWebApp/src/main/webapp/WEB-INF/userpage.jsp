@@ -59,7 +59,8 @@
         }
     %>
 </table>
-    <button type="submit" name="back">Back</button>
+    <button type="submit" name="back">Home</button>
+    <button type="submit" name="add">Add User</button>
 </form>
 </body>
 </html>

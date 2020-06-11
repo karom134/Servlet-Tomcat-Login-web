@@ -23,7 +23,6 @@ public class LoginServlet extends AbstractRoutableHttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        if(req.getParameter("login")!=null){
             try {
                 loginClick(req,resp);
             } catch (SQLException throwables) {
@@ -31,10 +30,6 @@ public class LoginServlet extends AbstractRoutableHttpServlet {
             } catch (ClassNotFoundException e) {
                 e.printStackTrace();
             }
-        }
-        else if(req.getParameter("register")!=null){
-            resp.sendRedirect("/register");
-        }
     }
     private void loginClick(HttpServletRequest req,HttpServletResponse resp) throws IOException, ServletException, SQLException, ClassNotFoundException {
         if(securityService.login(req)){
