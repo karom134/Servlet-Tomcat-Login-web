@@ -19,7 +19,8 @@
     Time now is: ${date1}
 </h3>
 <form method="post">
-    <button type="submit">Logout</button>
+    <button type="submit" name="logout">Logout</button>
+    <button type="submit" name="user">User</button>
 </form>
 </body>
 </html>

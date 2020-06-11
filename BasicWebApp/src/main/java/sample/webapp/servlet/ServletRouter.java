@@ -20,6 +20,7 @@ public class ServletRouter {
         servletClasses.add(HomeServlet.class);
         servletClasses.add(LoginServlet.class);
         servletClasses.add(RegisterServlet.class);
+        servletClasses.add(UserServlet.class);
     }
 
     public void init(Context ctx){

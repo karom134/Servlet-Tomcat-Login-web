@@ -40,9 +40,13 @@ public class HomeServlet extends AbstractRoutableHttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        securityService.logout(req);
-
-        resp.sendRedirect("/");
+        if(req.getParameter("logout")!=null) {
+            securityService.logout(req);
+            resp.sendRedirect("/");
+        }
+        else if(req.getParameter("user")!=null){
+            resp.sendRedirect("/user");
+        }
     }
 
     @Override
