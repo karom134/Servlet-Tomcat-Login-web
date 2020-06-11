@@ -26,10 +26,18 @@ public class UserService {
         }
         return false;
     }
-
+    public void removeUser(String username){
+        try {
+            databaseConnector.removeUser(username);
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+    }
     public void addUser(String name,String username,String password){
         try {
-            databaseConnector.updateDatabase(name,username,password);
+            databaseConnector.addDatabase(name,username,password);
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         } catch (SQLException throwables) {

@@ -29,12 +29,16 @@
 %>
 <html>
 <body>
+<p>
+    ${message}
+</p>
 <form method="post">
 <table border="1">
     <tr>
         <td>id</td>
         <td>name</td>
-        <td>action</td>
+        <td>action1</td>
+        <td>action2</td>
     </tr>
     <%
         try{
@@ -42,14 +46,17 @@
             statement=connection.createStatement();
             String sql ="select * from user";
             resultSet = statement.executeQuery(sql);
+            Integer i=0;
             while(resultSet.next()){
     %>
     <tr>
         <% String name=resultSet.getString("name");
+            i++;
         %>
-        <td><%=resultSet.getString("id") %></td>
+        <td><%=i %></td>
         <td><%=resultSet.getString("name") %></td>
         <td><button type="submit" name="remove" value= <%=resultSet.getString("Username")%>>Remove</button></td>
+        <td><button type="submit" name="edit" value= <%=resultSet.getString("Username")%>>Edit</button></td>
     </tr>
     <%
             }

@@ -47,7 +47,7 @@ public class RegisterServlet extends AbstractRoutableHttpServlet {
         }
         else{
             userService.addUser(name,username,password);
-            resp.sendRedirect("/login");
+            resp.sendRedirect("/");
         }
     }
     @Override
