@@ -23,6 +23,7 @@ public class RegisterServlet extends AbstractRoutableHttpServlet {
             submitClick(req,resp);
         }
         else if(req.getParameter("back")!=null){
+            System.out.println(req.getParameter("back"));
             resp.sendRedirect("/login");
         }
     }

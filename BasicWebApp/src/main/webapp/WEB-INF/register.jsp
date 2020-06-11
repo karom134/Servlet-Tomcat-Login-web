@@ -17,18 +17,21 @@
 <p>
 <form method="post">
     <label for="name"><b>Name</b></label>
-    <input type="text" placeholder="Enter Name" name="name">
+    <input type="text" placeholder="Enter Name" name="name" required>
     <br>
     <label for="username"><b>Username</b></label>
-    <input type="text" placeholder="Enter Username" name="username">
+    <input type="text" placeholder="Enter Username" name="username" required>
     <br>
     <label for="password"><b>Password</b></label>
-    <input type="password" placeholder="Enter Password" name="password">
+    <input type="password" placeholder="Enter Password" name="password" required>
     <br>
-    <label for="password"><b>Reenter Password</b></label>
-    <input type=" reenter password" placeholder="Enter Password" name="reenter_password">
+    <label for="password2"><b>Reenter Password</b></label>
+    <input type=" reenter password" placeholder="Enter Password" name="reenter_password" required>
+    <br>
     <br>
     <button type="submit" name="submit">Submit</button>
+</form>
+<form method="post">
     <button type="submit" name="back">Back</button>
 </form>
 </p>

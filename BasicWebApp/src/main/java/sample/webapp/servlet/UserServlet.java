@@ -30,4 +30,14 @@ public class UserServlet extends AbstractRoutableHttpServlet {
             throwables.printStackTrace();
         }
     }
+
+    @Override
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        if(req.getParameter("back")!=null){
+            resp.sendRedirect("/");
+        }
+        else if(req.getParameter("remove")!=null){
+            System.out.println(req.getParameter("remove"));
+        }
+    }
 }

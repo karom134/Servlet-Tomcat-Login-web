@@ -29,11 +29,12 @@
 %>
 <html>
 <body>
-<h1>Retrieve data from database in jsp</h1>
+<form method="post">
 <table border="1">
     <tr>
         <td>id</td>
         <td>name</td>
+        <td>action</td>
     </tr>
     <%
         try{
@@ -44,8 +45,11 @@
             while(resultSet.next()){
     %>
     <tr>
+        <% String name=resultSet.getString("name");
+        %>
         <td><%=resultSet.getString("id") %></td>
         <td><%=resultSet.getString("name") %></td>
+        <td><button type="submit" name="remove" value= <%=resultSet.getString("Username")%>>Remove</button></td>
     </tr>
     <%
             }
@@ -55,5 +59,7 @@
         }
     %>
 </table>
+    <button type="submit" name="back">Back</button>
+</form>
 </body>
 </html>
