@@ -17,17 +17,14 @@ ${error}
 <p>
 <form method="post">
         <label for="username"><b>Username</b></label>
-        <input type="text" placeholder="Enter Username" name="username" required>
+        <input type="text" placeholder="Enter Username" name="username">
         <br>
         <label for="password"><b>Password</b></label>
-        <input type="password" placeholder="Enter Password" name="password" required>
+        <input type="password" placeholder="Enter Password" name="password">
         <br>
-        <button type="submit">Login</button>
-        <button type="submit">Register</button>
-</p>
-
-
-
+        <button type="submit" name="login">Login</button>
+        <button type="submit" name="register">Register</button>
 </form>
+</p>
 </body>
 </html>
