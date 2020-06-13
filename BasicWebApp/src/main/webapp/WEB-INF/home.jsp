@@ -21,6 +21,7 @@
 <form method="post">
     <button type="submit" name="logout">Logout</button>
     <button type="submit" name="user">User</button>
+    <button type="submit" name="change">Change Password</button>
 </form>
 </body>
 </html>

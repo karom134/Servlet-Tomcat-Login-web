@@ -47,6 +47,11 @@ public class HomeServlet extends AbstractRoutableHttpServlet {
         else if(req.getParameter("user")!=null){
             resp.sendRedirect("/user");
         }
+        else if(req.getParameter("change")!=null){
+            req.getSession().setAttribute("val","password");
+            req.getSession().setAttribute("edit",req.getSession().getAttribute("username"));
+            resp.sendRedirect("/edit");
+        }
     }
 
     @Override

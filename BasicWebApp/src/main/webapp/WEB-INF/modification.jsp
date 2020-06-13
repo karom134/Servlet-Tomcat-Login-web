@@ -11,10 +11,15 @@
     <title>Title</title>
 </head>
 <body>
+<p>
+    ${error}
+</p>
 <form method="post">
-    <label for="name"><b>Name</b></label>
-    <input type="text" placeholder="Enter Name" name="name" required>
+    <label for="name"><b>${val}</b></label>
+    <input type="text" placeholder="Enter Value" name="name" required>
     <br>
+    <label for="name"><b>confirmation</b></label>
+    <input type="text" placeholder="Enter Value" name="confirmation" required>
     <br>
     <button type="submit" name="submit">Submit</button>
 </form>

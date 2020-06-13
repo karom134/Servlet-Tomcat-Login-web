@@ -35,8 +35,22 @@ public class DatabaseConnector {
         con.close();
         return user;
     }
-    public void updateUser(String username){
-
+    public void updateUser(String username,String str,String columnName) throws ClassNotFoundException, SQLException {
+        Class.forName("com.mysql.jdbc.Driver");
+        Connection con= DriverManager.getConnection(
+                "jdbc:mysql://localhost:3306/ooc_hw3","karomV","karom.140598");
+        String query=null;
+        if(columnName.equals("name")) {
+            query = "update user set name=? where Username=?";
+        }
+        else if(columnName.equals("password")){
+            query = "update user set password=? where Username=?";
+        }
+        PreparedStatement pstmt = con.prepareStatement(query);
+        pstmt.setString(1,str);
+        pstmt.setString(2,username);
+        pstmt.executeUpdate();
+        con.close();
     }
     public void addDatabase(String name,String username,String password) throws ClassNotFoundException, SQLException {
         Class.forName("com.mysql.jdbc.Driver");
@@ -64,6 +78,6 @@ public class DatabaseConnector {
 
     public static void main(String[] args) throws SQLException, ClassNotFoundException {
         DatabaseConnector databaseConnector=new DatabaseConnector();
-        databaseConnector.removeUser("tester2");
+        databaseConnector.updateUser("tester","abcdef","name");
     }
 }

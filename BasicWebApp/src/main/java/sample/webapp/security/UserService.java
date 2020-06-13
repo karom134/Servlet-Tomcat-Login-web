@@ -44,4 +44,13 @@ public class UserService {
             throwables.printStackTrace();
         }
     }
+    public void modifyUser(String username,String modification,String colnane){
+        try {
+            databaseConnector.updateUser(username,modification,colnane);
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+    }
 }

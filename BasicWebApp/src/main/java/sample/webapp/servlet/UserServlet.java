@@ -59,6 +59,7 @@ public class UserServlet extends AbstractRoutableHttpServlet {
         }
         else if(req.getParameter("edit")!=null){
             req.getSession().setAttribute("edit",req.getParameter("edit"));
+            req.getSession().setAttribute("val","name");
             resp.sendRedirect("/edit");
         }
     }
