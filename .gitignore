@@ -9,6 +9,7 @@
 *.idea
 *.iml
 target/
+*.DS_Store
 
 # Mobile Tools for Java (J2ME)
 .mtj.tmp/
@@ -23,8 +24,8 @@ hs_err_pid*
 
 
 ### Gradle ###
-ZorkArtOffline/.gradle/
-ZorkArtOffline/build/
+BasicWebApp/.gradle/
+BasicWebApp/build/
 
 # Ignore Gradle GUI config
 gradle-app.setting

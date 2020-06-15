@@ -26,7 +26,7 @@
     <input type="password" placeholder="Enter Password" name="password" required>
     <br>
     <label for="password2"><b>Reenter Password</b></label>
-    <input type=" reenter password" placeholder="Enter Password" name="reenter_password" required>
+    <input type="password" placeholder="Enter Password" name="reenter_password" required>
     <br>
     <br>
     <button type="submit" name="submit">Submit</button>
