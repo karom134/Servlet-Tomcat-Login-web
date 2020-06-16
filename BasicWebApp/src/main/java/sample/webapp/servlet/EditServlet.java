@@ -34,8 +34,6 @@ public class EditServlet extends AbstractRoutableHttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String username= (String) req.getSession().getAttribute("edit");
         String val=(String) req.getSession().getAttribute("val");
-        System.out.println(req.getParameter("name"));
-        System.out.println(req.getParameter("confirmation"));
         if(req.getParameter("submit")!=null){
             if(!req.getParameter("name").equals(req.getParameter("confirmation"))){
                 String error="Please try again,input not match";

@@ -9,12 +9,18 @@ import sample.webapp.security.UserService;
 import sample.webapp.servlet.HomeServlet;
 import sample.webapp.servlet.LoginServlet;
 
+import javax.servlet.*;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
 public class ServletRouter {
 
-    private final List<Class<? extends AbstractRoutableHttpServlet>> servletClasses=new ArrayList<>();
+    private final List<Class<? extends AbstractRoutableHttpServlet>> servletClasses = new ArrayList<>();
+    private List<String> urls = new ArrayList<>();
 
     {
         servletClasses.add(HomeServlet.class);
@@ -24,20 +30,20 @@ public class ServletRouter {
         servletClasses.add(EditServlet.class);
     }
 
-    public void init(Context ctx){
-        DatabaseConnector databaseConnector=new DatabaseConnector();
-        UserService userService=new UserService(databaseConnector);
-        SecurityService securityService=new SecurityService();
+    public void init(Context ctx) {
+        DatabaseConnector databaseConnector = new DatabaseConnector();
+        UserService userService = new UserService(databaseConnector);
+        SecurityService securityService = new SecurityService();
         securityService.setUserService(userService);
 
 
-        for(Class<? extends AbstractRoutableHttpServlet> servletClass:servletClasses){
+        for (Class<? extends AbstractRoutableHttpServlet> servletClass : servletClasses) {
             try {
-                AbstractRoutableHttpServlet httpServlet=servletClass.newInstance();
+                AbstractRoutableHttpServlet httpServlet = servletClass.newInstance();
                 httpServlet.setSecurityService(securityService);
-
-                Tomcat.addServlet(ctx,httpServlet.getClass().getName(),httpServlet);
-                ctx.addServletMapping(httpServlet.getPattern(),httpServlet.getClass().getName());
+                urls.add(httpServlet.getPattern());
+                Tomcat.addServlet(ctx, httpServlet.getClass().getName(), httpServlet);
+                ctx.addServletMapping(httpServlet.getPattern(), httpServlet.getClass().getName());
             } catch (InstantiationException e) {
                 e.printStackTrace();
             } catch (IllegalAccessException e) {
@@ -45,4 +51,6 @@ public class ServletRouter {
             }
         }
     }
+
+
 }
