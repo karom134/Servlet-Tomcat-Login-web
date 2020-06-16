@@ -17,7 +17,7 @@ public class WebApp {
         Tomcat tomcat=new Tomcat();
         tomcat.setPort(8080);
 
-        File docBase=new File("C:\\Users\\Asus\\Desktop\\OOC\\homework 3\\BasicWebApp\\src\\main\\webapp");
+        File docBase=new File("C:\\Users\\Asus\\Desktop\\OOC\\homework_3\\BasicWebApp\\src\\main\\webapp");
         docBase.mkdirs();
         try {
             Context ctx=tomcat.addWebapp("",docBase.getAbsolutePath());
