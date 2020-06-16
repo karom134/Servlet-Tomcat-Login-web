@@ -7,6 +7,7 @@ import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import javax.swing.*;
 import java.io.IOException;
 import java.sql.SQLException;
@@ -47,12 +48,23 @@ public class UserServlet extends AbstractRoutableHttpServlet {
             resp.sendRedirect("/");
         }
         else if(req.getParameter("remove")!=null){
-            String message="User "+user.getName()+" has been removed.";
+            HttpSession session=req.getSession();
+            System.out.println(session.getAttribute("username"));
+            if(!session.getAttribute("username").equals(user.getUsername())) {
+                String message = "User " + user.getName() + " has been removed.";
 
-            req.setAttribute("message",message);
-            securityService.getUserService().removeUser(user.getUsername());
-            RequestDispatcher requestDispatcher = req.getRequestDispatcher("WEB-INF/userpage.jsp");
-            requestDispatcher.include(req, resp);
+                req.setAttribute("message", message);
+                securityService.getUserService().removeUser(user.getUsername());
+                RequestDispatcher requestDispatcher = req.getRequestDispatcher("WEB-INF/userpage.jsp");
+                requestDispatcher.include(req, resp);
+            }
+            else{
+                String message = "You can't remove yourself.";
+
+                req.setAttribute("message", message);
+                RequestDispatcher requestDispatcher = req.getRequestDispatcher("WEB-INF/userpage.jsp");
+                requestDispatcher.include(req, resp);
+            }
         }
         else if(req.getParameter("add")!=null){
             resp.sendRedirect("/register");

@@ -1,5 +1,7 @@
 package sample.webapp.security;
 
+import org.mindrot.jbcrypt.BCrypt;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.sql.SQLException;
@@ -37,11 +39,11 @@ public class SecurityService {
     public boolean login(HttpServletRequest req) throws SQLException, ClassNotFoundException {
         String user=req.getParameter("username");
         String password=req.getParameter("password");
-        if(userService.checkUser(user)){
-            User userObject = userService.findUsername(user);
+        boolean isMatch= BCrypt.checkpw(password,userService.findUsername(user).getPassword());
+        if(isMatch){
             HttpSession session = req.getSession();
             session.setAttribute("username",user);
-            return Objects.equals(userObject.getPassword(),password);
+            return true;
         }
         else{
             return false;

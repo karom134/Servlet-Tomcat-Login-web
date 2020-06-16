@@ -1,5 +1,6 @@
 package sample.webapp.mysql;
 
+import org.mindrot.jbcrypt.BCrypt;
 import sample.webapp.security.User;
 
 import java.sql.*;
@@ -44,6 +45,7 @@ public class DatabaseConnector {
             query = "update user set name=? where Username=?";
         }
         else if(columnName.equals("password")){
+            str= BCrypt.hashpw(str,BCrypt.gensalt(12));
             query = "update user set password=? where Username=?";
         }
         PreparedStatement pstmt = con.prepareStatement(query);
@@ -58,10 +60,11 @@ public class DatabaseConnector {
                 "jdbc:mysql://localhost:3306/ooc_hw3","karomV","karom.140598");
         String query="insert into user(Username, name, password) " +
                 "values (?, ?, ?)";
+        String str= BCrypt.hashpw(password,BCrypt.gensalt(12));
         PreparedStatement pstmt = con.prepareStatement(query);
         pstmt.setString(1, username);
         pstmt.setString(2, name);
-        pstmt.setString(3, password);
+        pstmt.setString(3, str);
         pstmt.executeUpdate();
         con.close();
     }
@@ -78,6 +81,6 @@ public class DatabaseConnector {
 
     public static void main(String[] args) throws SQLException, ClassNotFoundException {
         DatabaseConnector databaseConnector=new DatabaseConnector();
-        databaseConnector.updateUser("tester","abcdef","name");
+        databaseConnector.addDatabase("Karom","karom-V","karom.140598");
     }
 }
