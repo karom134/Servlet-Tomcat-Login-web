@@ -6,23 +6,25 @@ import sample.webapp.security.User;
 import java.sql.*;
 
 public class DatabaseConnector {
-
+    private Connection con;
     public DatabaseConnector(){
-
+        try {
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            con= DriverManager.getConnection(
+                    "jdbc:mysql://localhost:3306/ooc_hw3","karomV","karom.140598");
+        } catch (ClassNotFoundException | SQLException e) {
+            e.printStackTrace();
+        }
     }
     public Boolean checkUserExist(String username) throws SQLException {
         String query = "select * from user where Username=?";
-            Connection con = DriverManager.getConnection(
-                    "jdbc:mysql://localhost:3306/ooc_hw3","karomV","karom.140598");
             PreparedStatement pstmt = con.prepareStatement(query);
             pstmt.setString(1, username);
             ResultSet rs=pstmt.executeQuery();
         return rs.next();
     }
+
     public User generateUser(String name) throws ClassNotFoundException, SQLException {
-        Class.forName("com.mysql.jdbc.Driver");
-        Connection con= DriverManager.getConnection(
-                "jdbc:mysql://localhost:3306/ooc_hw3","karomV","karom.140598");
         String query = "select * from user where Username=?";
         PreparedStatement pstmt = con.prepareStatement(query);
         pstmt.setString(1, name);
@@ -33,13 +35,9 @@ public class DatabaseConnector {
                     rs.getNString("password"),
                     rs.getNString("name"));
         }
-        con.close();
         return user;
     }
     public void updateUser(String username,String str,String columnName) throws ClassNotFoundException, SQLException {
-        Class.forName("com.mysql.jdbc.Driver");
-        Connection con= DriverManager.getConnection(
-                "jdbc:mysql://localhost:3306/ooc_hw3","karomV","karom.140598");
         String query=null;
         if(columnName.equals("name")) {
             query = "update user set name=? where Username=?";
@@ -52,12 +50,8 @@ public class DatabaseConnector {
         pstmt.setString(1,str);
         pstmt.setString(2,username);
         pstmt.executeUpdate();
-        con.close();
     }
     public void addDatabase(String name,String username,String password) throws ClassNotFoundException, SQLException {
-        Class.forName("com.mysql.jdbc.Driver");
-        Connection con= DriverManager.getConnection(
-                "jdbc:mysql://localhost:3306/ooc_hw3","karomV","karom.140598");
         String query="insert into user(Username, name, password) " +
                 "values (?, ?, ?)";
         String str= BCrypt.hashpw(password,BCrypt.gensalt(12));
@@ -65,22 +59,23 @@ public class DatabaseConnector {
         pstmt.setString(1, username);
         pstmt.setString(2, name);
         pstmt.setString(3, str);
+        System.out.println(query);
         pstmt.executeUpdate();
-        con.close();
     }
     public void removeUser(String username) throws ClassNotFoundException, SQLException {
-        Class.forName("com.mysql.jdbc.Driver");
-        Connection con= DriverManager.getConnection(
-                "jdbc:mysql://localhost:3306/ooc_hw3","karomV","karom.140598");
         String query="delete from user where Username=?";
         PreparedStatement pstmt = con.prepareStatement(query);
         pstmt.setString(1, username);
         pstmt.executeUpdate();
-        con.close();
+    }
+
+    public Connection getCon() {
+        return con;
     }
 
     public static void main(String[] args) throws SQLException, ClassNotFoundException {
         DatabaseConnector databaseConnector=new DatabaseConnector();
-        databaseConnector.addDatabase("Karom","karom-V","karom.140598");
+        databaseConnector.addDatabase("fabc","tester","tester");
+        databaseConnector.removeUser("tester");
     }
 }

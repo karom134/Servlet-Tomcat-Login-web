@@ -9,6 +9,7 @@ import sample.webapp.servlet.ServletRouter;
 
 import javax.servlet.ServletException;
 import java.io.File;
+import java.sql.SQLException;
 
 
 public class WebApp {
@@ -27,7 +28,8 @@ public class WebApp {
 
             tomcat.start();
             tomcat.getServer().await();
-        } catch (ServletException | LifecycleException e) {
+            servletRouter.getDatabaseConnector().getCon().close();
+        } catch (ServletException | LifecycleException | SQLException e) {
             e.printStackTrace();
         }
     }

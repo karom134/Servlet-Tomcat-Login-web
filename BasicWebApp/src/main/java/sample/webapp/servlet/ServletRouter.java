@@ -18,7 +18,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ServletRouter {
-
+    private DatabaseConnector databaseConnector;
     private final List<Class<? extends AbstractRoutableHttpServlet>> servletClasses = new ArrayList<>();
     private List<String> urls = new ArrayList<>();
 
@@ -31,7 +31,7 @@ public class ServletRouter {
     }
 
     public void init(Context ctx) {
-        DatabaseConnector databaseConnector = new DatabaseConnector();
+        databaseConnector = new DatabaseConnector();
         UserService userService = new UserService(databaseConnector);
         SecurityService securityService = new SecurityService();
         securityService.setUserService(userService);
@@ -52,5 +52,7 @@ public class ServletRouter {
         }
     }
 
-
+    public DatabaseConnector getDatabaseConnector() {
+        return databaseConnector;
+    }
 }
