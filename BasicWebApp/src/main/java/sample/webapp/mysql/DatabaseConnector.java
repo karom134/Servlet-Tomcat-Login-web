@@ -59,7 +59,6 @@ public class DatabaseConnector {
         pstmt.setString(1, username);
         pstmt.setString(2, name);
         pstmt.setString(3, str);
-        System.out.println(query);
         pstmt.executeUpdate();
     }
     public void removeUser(String username) throws ClassNotFoundException, SQLException {

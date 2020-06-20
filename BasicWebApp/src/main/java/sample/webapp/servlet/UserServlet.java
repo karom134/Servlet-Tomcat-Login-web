@@ -49,7 +49,6 @@ public class UserServlet extends AbstractRoutableHttpServlet {
         }
         else if(req.getParameter("remove")!=null){
             HttpSession session=req.getSession();
-            System.out.println(session.getAttribute("username"));
             if(!session.getAttribute("username").equals(user.getUsername())) {
                 String message = "User " + user.getName() + " has been removed.";
 
