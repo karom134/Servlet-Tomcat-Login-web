@@ -1,6 +1,6 @@
 package sample.webapp;
 
-import sample.webapp.mysql.DatabaseConnector;
+
 import sample.webapp.security.SecurityService;
 
 import javax.servlet.http.HttpServlet;

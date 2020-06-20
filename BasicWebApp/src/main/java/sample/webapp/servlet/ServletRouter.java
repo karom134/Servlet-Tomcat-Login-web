@@ -6,14 +6,6 @@ import sample.webapp.AbstractRoutableHttpServlet;
 import sample.webapp.mysql.DatabaseConnector;
 import sample.webapp.security.SecurityService;
 import sample.webapp.security.UserService;
-import sample.webapp.servlet.HomeServlet;
-import sample.webapp.servlet.LoginServlet;
-
-import javax.servlet.*;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
