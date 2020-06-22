@@ -67,14 +67,18 @@ public class DatabaseConnector {
         pstmt.setString(1, username);
         pstmt.executeUpdate();
     }
-
+    public void changeSetting() throws SQLException {
+        String query="ALTER DATABASE ooc_hw3 CHARACTER SET utf8 COLLATE utf8_bin";
+        PreparedStatement pstmt = con.prepareStatement(query);
+        pstmt.execute();
+    }
     public Connection getCon() {
         return con;
     }
 
     public static void main(String[] args) throws SQLException, ClassNotFoundException {
         DatabaseConnector databaseConnector=new DatabaseConnector();
-        databaseConnector.addDatabase("fabc","tester","tester");
-        databaseConnector.removeUser("tester");
+        databaseConnector.changeSetting();
+
     }
 }

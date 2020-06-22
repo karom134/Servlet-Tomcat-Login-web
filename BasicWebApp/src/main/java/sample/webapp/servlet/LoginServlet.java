@@ -33,7 +33,7 @@ public class LoginServlet extends AbstractRoutableHttpServlet {
     }
     private void loginClick(HttpServletRequest req,HttpServletResponse resp) throws IOException, ServletException, SQLException, ClassNotFoundException {
         if(securityService.login(req)){
-            resp.sendRedirect("/");
+            resp.sendRedirect("/home");
         }else{
             String error="Please try again,invalid username or password";
 

@@ -56,6 +56,6 @@ public class HomeServlet extends AbstractRoutableHttpServlet {
 
     @Override
     public String getPattern() {
-        return "/index.jsp";
+        return "/home";
     }
 }
